@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.stylerit.adm.adm1000.adm1100.adm1100.service.Adm1100DAO">
+
+	<!-- adm1100DAO.updateMenuOderAjax -->
+	<select id="updateMenuOderAjax" parameterType="map">
+		/* adm1100DAO.updateMenuOderAjax - 전체 회원 수 조회 코드 */
+		<![CDATA[ 
+			UPDATE MENU 
+			SET MN_SQ = MN_SQ+1
+			WHERE 1=1
+		]]>
+		<if test="!S_LOC_CD.equals('')" >
+			<![CDATA[ 
+				AND S_LOC_CD = #{S_LOC_CD}
+			]]>
+		</if>	
+		<if test="!selectMenuCode.equals('')" >
+			<![CDATA[ 
+				AND MN_CD >= #{selectMenuCode}
+			]]>
+		</if>	
+	</select>
+	
+</mapper>

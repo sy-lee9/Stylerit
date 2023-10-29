@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.stylerit.adm.adm1000.adm1200.adm1200.service.Adm1200DAO">
+	
+	<!-- adm1200DAO.selectTotalMemberCnt -->
+	<select id="selectTotalMemberCnt" resultType="int">
+		/* adm1200DAO.selectTotalMemberCnt - 전체 회원 수 조회 코드 */
+		<![CDATA[ 
+			SELECT 
+				COUNT(M_EML)
+			FROM MEMBER M 
+			WHERE M_DLT = 0
+		]]>
+		<if test="memberState != '' &amp;&amp; memberState != null &amp;&amp; memberState != ('DEFAULT')" >
+			<![CDATA[ 				
+				AND M.M_ST = #{memberState}
+			]]>
+		</if>	
+		<if test="searchValue != '' &amp;&amp; searchValue != null" >
+			<![CDATA[ 				
+				AND M.M_NM LIKE CONCAT('%' #{searchValue} '%')
+			]]>
+		</if>	
+	</select>
+	
+	<!-- adm1200DAO.selectMemberInfo -->
+	<select id="selectMemberInfo" parameterType="map" resultType="map">
+		/* adm1200DAO.selectMemberInfo - 회원 정보 조회 코드 */
+		<![CDATA[ 
+			SELECT 
+				SC.SUB_NM AS M_ST 
+				,M_EML	
+				,M_NM
+				,M_TEL
+				,M_GND
+				,M_BTD
+				,M_JOIN_D
+				,COUNT(RV.REZ_M_EML) AS totalNum
+				,SUM(CASE WHEN RV.REZ_STATE = 'CP_TM' THEN MN.MN_PR ELSE 0 END) AS totalPrice
+				,COUNT(CASE WHEN RV.REZ_STATE = 'CC_REZ' THEN 1 ELSE NULL END) AS reservationCancleNum 
+			FROM MEMBER M 
+			LEFT JOIN SUB_CD SC ON M.M_ST = SC.SUB_CD 
+			LEFT JOIN RESERVATION RV ON M.M_EML = RV.REZ_M_EML 
+			LEFT JOIN MENU MN ON RV.REZ_MN_CD = MN.MN_CD
+			WHERE 1=1
+			AND M_DLT = 0
+		]]>
+		<if test="memberState != '' &amp;&amp; memberState != null &amp;&amp; memberState != ('DEFAULT')" >
+			<![CDATA[ 				
+				AND M.M_ST = #{memberState}
+			]]>
+		</if>	
+		<if test="searchValue != '' &amp;&amp; searchValue != null" >
+			<![CDATA[ 				
+				AND M.M_NM LIKE CONCAT('%' #{searchValue} '%')
+			]]>
+		</if>	
+		GROUP BY M.M_ST, M.M_JOIN_D, M.M_EML
+		ORDER BY M.M_ST, totalNum DESC, totalPrice DESC
+		<if test="startIndex != null &amp;&amp; startIndex eq 0 ">
+			<![CDATA[ 				
+				LIMIT 0
+		 	]]>
+		</if>
+		<if test="startIndex != '' &amp;&amp; startIndex != null">
+			<![CDATA[ 				
+		    	LIMIT #{startIndex}
+		 	]]>
+		</if>
+		<if test="listSize != '' &amp;&amp; listSize != null">
+			<![CDATA[ 				
+		    	,#{listSize}
+		 	]]>
+		</if>
+	</select>
+	
+</mapper>

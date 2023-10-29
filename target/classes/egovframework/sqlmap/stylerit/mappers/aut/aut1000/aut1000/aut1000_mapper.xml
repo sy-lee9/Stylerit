@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.stylerit.aut.aut1000.aut1000.service.Aut1000DAO">
+
+	<resultMap id="aut1000VO" type="egovframework.stylerit.aut.aut1000.aut1000.service.Aut1000VO">
+		<result property="M_PW" column="M_PW"/>
+		<result property="M_ST" column="M_ST"/>
+		<result property="M_AUTR_CD" column="M_AUTR_CD"/>
+		<result property="M_NM" column="M_NM"/>		
+		<result property="S_LOC_CD" column="S_LOC_CD"/>
+		<result property="D_PW" column="D_PW"/>
+		<result property="D_POS_CD" column="D_POS_CD"/>
+		<result property="D_AUTR_CD" column="D_AUTR_CD"/>
+		<result property="D_NM" column="D_NM"/>
+	</resultMap>
+	 
+	<!-- aut1000DAO.selectMemberInfoChk -->
+	<select id="selectMemberInfoChk" parameterType="egovMap" resultMap="aut1000VO">
+		/* aut1000DAO.selectMemberInfoChk - 가입된 회원정보 조회 코드 */
+		<![CDATA[ 
+			SELECT 
+				M_PW
+				,(SC.SUB_NM) AS M_ST
+				,M.M_AUTR_CD
+				,M.M_NM
+			FROM 	MEMBER M
+			LEFT JOIN SUB_CD SC 
+			ON M.M_ST = SC.SUB_CD  
+			WHERE 1=1
+		]]>
+		<if test="!email.equals('')" >
+			<![CDATA[ 
+				AND M_EML = #{email}
+			]]>
+		</if>	
+		<![CDATA[ 
+			AND M_ST = 'ACT_MB'	
+		]]>
+	</select>
+		
+	<!-- aut1000DAO.selectDsnInfoChk -->
+	<select id="selectDsnInfoChk" parameterType="egovMap" resultMap="aut1000VO">
+		/* aut1000DAO.selectDsnInfoChk - 등록된 디자이너 정보 조회 코드 */
+		<![CDATA[ 
+			SELECT 
+				D_PW
+				,S_LOC_CD
+				,(SC.SUB_NM) AS D_POS_CD
+				,D_AUTR_CD
+				,D_NM
+			FROM	DESIGNER D
+			INNER JOIN SUB_CD SC on D_POS_CD = SUB_CD
+			WHERE 1=1
+		]]>
+		<if test="!id.equals('')" >
+			<![CDATA[ 
+				AND D_ID = #{id}
+			]]>
+		</if>	
+		<![CDATA[ 
+			AND D_USE = 1
+			AND D_DLT = 0
+		]]>
+	</select>
+	
+</mapper>

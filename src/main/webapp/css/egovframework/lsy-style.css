@@ -1,0 +1,99 @@
+:root {
+	--lsy-color-gray: #6c757d;
+	--lsy-color-gray-rgb: 108, 117, 125;
+	--lsy-color-darkgray: #495057;
+	--lsy-color-darkgray-rgb: 73, 80, 87;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+.lsy-title-font{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px !important;
+	font-weight: 600;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap');
+.lsy-content-font{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px !important;
+}
+
+.lsy-label-text{
+	font-family: 'Noto Sans KR', sans-serif;
+	color: var(--lsy-color-gray);
+}
+
+
+/* Inner Page Size Style */
+.lsy-inner-page{
+    margin: 4% 17% !important;
+}
+
+.lsy-inner-page-menu{
+    margin: 4% 25% !important;
+}
+
+
+/* GNB Style */
+.lsy-border-bottom{
+	height: 12%;
+}
+
+.lsy-btn-outline-secondary {
+    margin-right: 3%;
+}
+
+.lsy-text-center {
+	padding: 2% 10% 0% 10%;
+	margin-left: 32%;
+}
+
+.lsy-justify-content-end {
+    --bs-gutter-y: -50;
+}
+
+.lsy-nav-scroller {
+	height: 7%;
+}
+
+.lsy-nav-underline {
+	font-size: 18px;
+	padding: 1% 5% 0% 5%;
+	padding-left: 5% !important;
+}
+
+
+/* Login Box Style */
+.form-login.lsy-form-login {
+	margin: 10% 30% !important;
+}
+
+.d-flex.lsy-d-flex{
+	justify-content: center;
+}
+
+
+/* Menu Gap */
+.lsy-menu-gap{
+	width: 850px;
+    margin-left: 4%;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+
+/* Search Box */
+.lsy-search-box{
+	margin-right: 10px;	
+    float: right;
+    width: auto !important;
+}
+
+
+
+
+
+
+
+

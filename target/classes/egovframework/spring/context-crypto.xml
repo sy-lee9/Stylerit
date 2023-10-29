@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:egov-crypto="http://maven.egovframe.go.kr/schema/egov-crypto"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://maven.egovframe.go.kr/schema/egov-crypto http://maven.egovframe.go.kr/schema/egov-crypto/egov-crypto-4.1.0.xsd">
+		
+		<bean id="passwordEncoder" class="org.egovframe.rte.fdl.cryptography.EgovPasswordEncoder">
+			<property name="algorithm" value="SHA-256" />
+			<property name="hashedPassword" value="GdNE+e6RJXihQ8/vnUR3mbY66dTAmFSWjcdqfHFgQCs=" />
+		</bean>
+		
+</beans>

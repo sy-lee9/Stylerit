@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>	
+    <typeAliases>
+	    <typeAlias alias="egovMap" 	type="org.egovframe.rte.psl.dataaccess.util.EgovMap" />
+		<typeAlias alias="aut1000VO" type="egovframework.stylerit.aut.aut1000.aut1000.service.Aut1000VO"/>
+		<typeAlias alias="aut1100VO" type="egovframework.stylerit.aut.aut1000.aut1100.service.Aut1100VO"/>
+		<typeAlias alias="mn1000VO" type="egovframework.stylerit.mn.mn1000.mn1000.service.Mn1000VO"/>
+		<typeAlias alias="dsn1000VO" type="egovframework.stylerit.dsn.dsn1000.dsn1000.service.Dsn1000VO"/>
+		<typeAlias alias="adm1100VO" type="egovframework.stylerit.adm.adm1000.adm1100.adm1100.service.Adm1100VO"/>
+		<typeAlias alias="adm1200VO" type="egovframework.stylerit.adm.adm1000.adm1200.adm1200.service.Adm1200VO"/>
+    </typeAliases>
+</configuration>

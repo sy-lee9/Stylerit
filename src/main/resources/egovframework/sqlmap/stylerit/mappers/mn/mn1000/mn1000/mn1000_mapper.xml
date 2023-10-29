@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.stylerit.mn.mn1000.mn1000.service.Mn1000DAO">
+
+	<resultMap id="mn1000VO" type="egovframework.stylerit.mn.mn1000.mn1000.service.Mn1000VO">
+		<result property="MN_CD" column="MN_CD"/>
+		<result property="MN_NM" column="MN_NM"/>
+		<result property="MN_PR" column="MN_PR"/>
+	</resultMap>
+				
+	<!-- mn1000DAO.selectMnClList -->
+	<select id="selectMnClList" parameterType="string" resultType="map">
+		/* mn1000DAO.selectMnClList - 메뉴 분류 조회 코드 */
+		
+		<![CDATA[ 
+			SELECT 
+				SC.SUB_CD AS MN_CL_CD
+				,SC.SUB_NM AS MN_NM
+			FROM SUB_CD SC
+			LEFT JOIN MENU M ON SC.SUB_CD = M.MN_CL_CD
+			WHERE 1=1 
+		]]>
+		<if test="!S_LOC_CD.equals('')" >
+			<![CDATA[ 
+				AND M.S_LOC_CD = #{param}
+			]]>
+		</if>	
+		<![CDATA[ 			
+			GROUP BY SC.SUB_CD
+			ORDER BY
+				CASE 
+					WHEN SC.SUB_CD = 'ETC_MN' THEN 2
+					ELSE 1
+				END,
+				SC.SUB_CD
+		]]>		
+	</select>
+		
+	<!-- mn1000DAO.selectMnListAjax -->
+	<select id="selectMnListAjax" parameterType="egovMap" resultType="mn1000VO">
+		/* mn1000DAO.selectMnListAjax - 메뉴 리스트 조회 코드 */
+		
+		<![CDATA[ 
+			SELECT
+			    M.MN_CD
+			    ,M.MN_NM
+			    ,M.MN_PR
+			FROM
+			    SUB_CD SC
+			INNER JOIN MENU M ON SC.SUB_CD = M.MN_CL_CD
+			WHERE 1=1
+		]]>
+		<if test="!S_LOC_CD.equals('')" >
+			<![CDATA[ 
+				AND S_LOC_CD = #{S_LOC_CD}
+			]]>
+		</if>	
+		<if test="!(selectMenu.equals('') || selectMenu.equals('all'))" >
+			<![CDATA[ 
+				AND SC.SUB_CD = #{selectMenu}
+			]]>
+		</if>
+		<![CDATA[ 			
+			AND M.MN_USE = 1
+			AND M.MN_DLT = 0
+			ORDER BY M.MN_SQ ASC
+		]]>		
+	</select>
+
+</mapper>

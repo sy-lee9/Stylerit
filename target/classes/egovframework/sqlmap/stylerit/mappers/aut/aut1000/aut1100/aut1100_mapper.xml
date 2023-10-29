@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.stylerit.aut.aut1000.aut1100.service.Aut1100DAO">
+		 	 
+	<!-- aut1100DAO.mailOverlayChkAjax -->
+	<select id="mailOverlayChkAjax" resultType="int">
+		/* aut1100DAO.mailOverlayChkAjax - 가입된 회원정보 조회 코드 */
+		<![CDATA[ 
+			SELECT 
+				COUNT(M_EML)
+			FROM 	MEMBER
+			WHERE 1=1
+		]]>
+		<if test="!param.equals('')" >
+			<![CDATA[ 
+				AND M_EML = #{param}
+			]]>
+		</if>	
+	</select>
+	
+	<!-- aut1100DAO.joinAjax -->
+	<insert id="joinAjax" parameterType="Map">
+		/* aut1100DAO.joinAjax - 회원정보 삽입 코드 */
+		<![CDATA[
+			INSERT INTO MEMBER
+				(M_EML
+				,M_PW
+				,M_ST
+				,M_AUTR_CD
+				,M_NM
+				,M_TEL
+				,M_GND
+				,M_BTD
+				,FST_RGT_ID
+				,FST_RGT_IP)
+			VALUES
+				(
+		]]>
+		<if test="!email.equals('')" >
+			<![CDATA[ #{email} ]]>
+		</if>	
+		<if test="!encodedPw.equals('')" >
+			<![CDATA[ ,#{encodedPw} ]]>
+		</if>	
+		
+		,'ACT_MB'
+		,'MEMBER'
+		
+		<if test="!name.equals('')" >
+			<![CDATA[ ,#{name} ]]>
+		</if>	
+		<if test="!phoneNum.equals('')" >
+			<![CDATA[ ,#{phoneNum} ]]>
+		</if>	
+		<choose>
+            <when test="!gender.equals('')">
+                <![CDATA[ ,#{gender} ]]>
+            </when>
+            <otherwise>
+                ''
+            </otherwise>
+        </choose>
+		<choose>
+            <when test="!bDay.equals('')">
+                <![CDATA[ ,#{bDay} ]]>
+            </when>
+            <otherwise>
+                ''
+            </otherwise>
+        </choose>
+		<if test="!email.equals('')" >
+			<![CDATA[ ,#{email} ]]>
+		</if>
+		<if test="!cltIp.equals('')" >
+			<![CDATA[ ,#{cltIp} ]]>
+		</if>				
+				)
+	</insert>
+
+</mapper>
