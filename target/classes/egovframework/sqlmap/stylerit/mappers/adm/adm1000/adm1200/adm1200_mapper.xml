@@ -3,6 +3,19 @@
 
 <mapper namespace="egovframework.stylerit.adm.adm1000.adm1200.adm1200.service.Adm1200DAO">
 	
+	<resultMap id="adm1200VO" type="egovframework.stylerit.adm.adm1000.adm1200.adm1200.service.Adm1200VO">
+		<result property="M_ST" column="M_ST"/>
+		<result property="M_EML" column="M_EML"/>
+		<result property="M_NM" column="M_NM"/>		
+		<result property="M_TEL" column="M_TEL"/>
+		<result property="M_GND" column="M_GND"/>
+		<result property="M_BTD" column="M_BTD"/>
+		<result property="M_JOIN_D" column="M_JOIN_D"/>
+		<result property="totalNum" column="totalNum"/>
+		<result property="totalPrice" column="totalPrice"/>
+		<result property="reservationCancleNum" column="reservationCancleNum"/>
+	</resultMap>
+	
 	<!-- adm1200DAO.selectTotalMemberCnt -->
 	<select id="selectTotalMemberCnt" resultType="int">
 		/* adm1200DAO.selectTotalMemberCnt - 전체 회원 수 조회 코드 */
@@ -25,7 +38,7 @@
 	</select>
 	
 	<!-- adm1200DAO.selectMemberInfo -->
-	<select id="selectMemberInfo" parameterType="map" resultType="map">
+	<select id="selectMemberInfo" parameterType="map" resultMap="adm1200VO">
 		/* adm1200DAO.selectMemberInfo - 회원 정보 조회 코드 */
 		<![CDATA[ 
 			SELECT 

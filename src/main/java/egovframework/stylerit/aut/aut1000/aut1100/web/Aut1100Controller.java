@@ -120,7 +120,8 @@ public class Aut1100Controller {
 			}			
 			
 		} catch (Exception e) {
-			System.out.println(e);
+	    	e.printStackTrace(); 
+			throw e;
 		}		
 		
 		return authNum;

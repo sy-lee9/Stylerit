@@ -1,5 +1,8 @@
 package egovframework.stylerit.inf.inf1000.inf1000.web;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -37,7 +40,7 @@ public class Inf1000Controller {
 	
 	/**
 	 * 샵소개 페이지로 이동 
-	 * @return String - 메뉴 페이지
+	 * @return String - 샵소개 페이지
 	 */
 	@RequestMapping(value = "/")
 	public String main(HttpSession session, Model model) throws Exception {		
@@ -46,21 +49,20 @@ public class Inf1000Controller {
 	
 	/**
 	 * 샵소개 페이지로 이동 
-	 * @return String - 메뉴 페이지
+	 * @return String - 샵소개 페이지
 	 */
 	@RequestMapping(value = "/inf/inf1000/inf1000/selectInf1000View.do")
 	public String selectInf1000View(HttpSession session, Model model) throws Exception {		
 		
-
-		//로그인 상태 세션에 저장(로그인 여부, 지점코드, 직급, 권한, 디자이너명)
-		session.setAttribute("login", "designer");
-		session.setAttribute("S_LOC_CD", 1);
-		session.setAttribute("D_POS_CD", "designer");
-		session.setAttribute("D_AUTR_CD", "ADMIN");
-		session.setAttribute("D_NM", "유진");
-		
 		//해당 샵 코드 세션에 저장
 		session.setAttribute("S_LOC_CD", "1");
+		
+		//해당 샵 코드 가져오기
+		String S_LOC_CD = (String) session.getAttribute("S_LOC_CD");
+		
+		//조회된 샵 정보
+		Map<String, Object> shopInfo = inf1000Service.selectShopInfo(S_LOC_CD);	
+		model.addAttribute("shopInfo", shopInfo);
 		
 		//GNV Type
 		model.addAttribute("page", "inf");

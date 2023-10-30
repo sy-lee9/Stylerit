@@ -35,8 +35,8 @@ public class Rsv1000Controller {
 	private Rsv1000Service rsv1000Service;
 	
 	/**
-	 * 메뉴 페이지로 이동 
-	 * @return String - 메뉴 페이지
+	 * 예약 페이지로 이동 
+	 * @return String - 예약 페이지
 	 */
 	@RequestMapping(value = "/rsv/rsv1000/rsv1000/selectRsv1000View.do")
 	public String selectRsv1000View(Model model) throws Exception {				

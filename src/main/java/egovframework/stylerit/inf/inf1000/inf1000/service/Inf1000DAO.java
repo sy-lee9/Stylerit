@@ -1,6 +1,7 @@
 package egovframework.stylerit.inf.inf1000.inf1000.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
@@ -24,10 +25,12 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 public interface Inf1000DAO {
 
 	/**
-	 * 디자이너 정보 조회
+	 * 샵 정보 조회
 	 * @param String - 샵 코드
-	 * @return HashMap<String, Object> - 디자이너 정보 리스트
+	 * @return HashMap<String, Object> - 샵 정보
 	 */
+	Map<String, Object> selectShopInfo(String s_LOC_CD);
+
 
 	
 	

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.stylerit.adm.adm1000.adm1200.adm1200.service.Adm1200DAO;
 import egovframework.stylerit.adm.adm1000.adm1200.adm1200.service.Adm1200Service;
+import egovframework.stylerit.adm.adm1000.adm1200.adm1200.service.Adm1200VO;
 
 /**
  * @Class Name : Adm1200ServiceImpl.java
@@ -38,6 +39,11 @@ public class Adm1200ServiceImpl extends EgovAbstractServiceImpl implements Adm12
 	@Resource(name="adm1200DAO")
 	private Adm1200DAO adm1200DAO;
 
+	/**
+	 * 멤버 정보 리스트 조회
+	 * @param Map<String, Object> - pageNo, memberState, searchValue
+	 * @return String - 회원 관리 페이지
+	 */
 	@Override
 	public ModelAndView selectMemberInfo(Map<String, Object> params) {
 		
@@ -47,28 +53,38 @@ public class Adm1200ServiceImpl extends EgovAbstractServiceImpl implements Adm12
 		mav.addObject("page", "mbAdm");
 		
 		PaginationInfo paginationInfo = new PaginationInfo();
-	    int pageNo = 1; //현재 페이지 번호
-	    int listScale = 5; // 한 페이지에 나올 글 수
-	    int pageScale = 5; // 페이지 개수
-        int totalList = adm1200DAO.selectTotalMemberCnt(params); //전체 글 개수
+		
+		//현재 페이지 번호
+	    int pageNo = 1; 
+	    //한 페이지에 나올 회원정보 수
+	    int listScale = 5; 
+	    //페이지 개수
+	    int pageScale = 5; 
+	    //전체 회원정보 갯수
+        int totalList = adm1200DAO.selectTotalMemberCnt(params); 
 	    
 	    try {
 	        if(params.size() > 0) {
-	            pageNo = Integer.parseInt((String)params.get("pageNo"));//현재 페이지 번호
+	        	//현재 페이지 번호
+	            pageNo = Integer.parseInt((String)params.get("pageNo"));
 	        }
 
+	        //PaginationRenderer로 보낼 값 저장 
 	        paginationInfo.setCurrentPageNo(pageNo);
 	        paginationInfo.setRecordCountPerPage(listScale); 
 	        paginationInfo.setPageSize(pageScale); 
 	        paginationInfo.setTotalRecordCount(totalList);
 
+	        //시작 index
 	        int startIndex = paginationInfo.getFirstRecordIndex(); 
+	        //한 페이지에 나올 회원정보 수
 	        int listSize = listScale; 
 	        
 	        params.put("startIndex", startIndex);
 	        params.put("listSize", listSize);            
 	        
-	        List<Map<String,Object>> memberInfoList = adm1200DAO.selectMemberInfo(params); //커뮤니티 글 목록			
+	        //해당 페이지에 나올 회원정보 리스트
+	        List<Adm1200VO> memberInfoList = adm1200DAO.selectMemberInfo(params); 	
 
 	        mav.addObject("pageNo",pageNo);
 	        mav.addObject("memberInfoList",memberInfoList);
@@ -76,7 +92,8 @@ public class Adm1200ServiceImpl extends EgovAbstractServiceImpl implements Adm12
 	        mav.addObject("paginationInfo",paginationInfo);
 
 	    } catch (Exception e) {
-	        logger.debug(e.getMessage());
+	    	e.printStackTrace(); 
+			throw e;
 	    }
 		
 		return mav;

@@ -1,6 +1,10 @@
 package egovframework.stylerit.inf.inf1000.inf1000.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import egovframework.stylerit.dsn.dsn1000.dsn1000.service.Dsn1000VO;
 
 /**
  * @Class Name : Inf1000Service.java
@@ -19,6 +23,7 @@ import java.util.ArrayList;
 
 public interface Inf1000Service {
 
-	//디자이너 정보 조회
+	//샵 정보 조회
+	Map<String, Object> selectShopInfo(String s_LOC_CD);
 
 }

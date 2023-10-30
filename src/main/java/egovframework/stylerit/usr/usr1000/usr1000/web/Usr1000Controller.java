@@ -33,7 +33,10 @@ public class Usr1000Controller {
 	@Resource(name="usr1000Service")
 	private Usr1000Service usr1000Service;
 	
-	
+	/**
+	 * 마이페이지로 이동 
+	 * @return String - 마이페이지
+	 */
 	@RequestMapping(value = "/usr/usr1000/usr1000/selectUsr1000View.do")
 	public String selectUsr1000View() throws Exception {		
 		return "usr/usr1000/usr1000/usr1000";

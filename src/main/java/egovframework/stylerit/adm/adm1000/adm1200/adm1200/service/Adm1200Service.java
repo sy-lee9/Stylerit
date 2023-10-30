@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface Adm1200Service {
 
+	//멤버 정보 리스트 조회
 	ModelAndView selectMemberInfo(Map<String, Object> params);
 	
 	

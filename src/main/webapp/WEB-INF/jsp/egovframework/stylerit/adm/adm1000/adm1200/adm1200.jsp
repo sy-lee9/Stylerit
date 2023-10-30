@@ -95,13 +95,13 @@
 	          	<tbody id="list">
 	            	<c:forEach items="${memberInfoList}" var="info">
 	            		<tr>
-					        <td>${info.M_ST}</td>
-					        <td>${info.M_EML}</td>
-					        <td>${info.M_NM}</td>
-					        <td>${info.M_GND}</td>
-					        <td>${info.M_BTD}</td>
-					        <td>${info.M_TEL}</td>
-					        <td>${info.M_JOIN_D}</td>
+					        <td>${info.m_ST}</td>
+					        <td>${info.m_EML}</td>
+					        <td>${info.m_NM}</td>
+					        <td>${info.m_GND}</td>
+					        <td>${info.m_BTD}</td>
+					        <td>${info.m_TEL}</td>
+					        <td>${info.m_JOIN_D}</td>
 					        <td>${info.totalNum}</td>
 					        <td>${info.totalPrice}</td>
 					        <td>${info.reservationCancleNum}</td>
@@ -123,12 +123,16 @@
 		</form>
 	</body>
 	<script>
-		
+	
+		//현재 페이지 
 		var currentPageNo = ${pageNo};	
 		 
+		//선택된 멤버 상태, 회원명으로 회원정보 조회
 		function linkPage(pageNo){
 
+			//서택된 회원상태
 			var memberState = $('#memberState').val();
+			//입력된 검색어
 			var searchValue = $('#searchValue').val();
 			
 			$('input[name="pageNo"]').val(pageNo);
@@ -139,20 +143,23 @@
 			
 		}
 
-		
+		//회원상태 선택 시 조회 함수 실행
 		$('#memberState').change(function(){
 			linkPage(currentPageNo);
 		});
 
+		//검색 버튼 클릭 시 조회 함수 실행
 		function searchName(){
 			linkPage(currentPageNo);
 		}
 		
-		// 엔터 키 누를 때 링크 동작 방지
+		//엔터키 누를 때 링크 동작 방지
 		$('#searchValue').on("keydown", function(event) {
 		    if (event.key === "Enter") {
-		        event.preventDefault(); // 기본 동작 중지
-		        searchName(); // 링크 클릭
+		    	//기본 동작 중지
+		        event.preventDefault(); 
+		        //링크 클릭
+		        searchName(); 
 		      }
 		});
 		

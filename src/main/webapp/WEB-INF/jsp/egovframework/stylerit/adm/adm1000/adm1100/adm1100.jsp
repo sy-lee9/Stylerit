@@ -60,9 +60,7 @@
             	vertical-align: middle;
             }
             
-            
-            
-            
+
 			td.move {
 			  cursor: grab;
 			}
@@ -89,6 +87,7 @@
 			.gu-transit {
 			  opacity: 0.2;
 			}
+			
 		</style>
 	</head>
 	<body>
@@ -127,6 +126,7 @@
         	
         </div>
         <!-- /메뉴 출력 영역 -->
+        
 	</body>
 	<script>
 
@@ -214,16 +214,8 @@
 			});
 		}
 		
-		$('#list').on('mouseup', 'tr', function (e) {
-	  		console.log("? ");
-
-			//table tr row index
-		    var rowindex =  e.target.parentNode.rowIndex;
-	  		console.log("rowindex? "+rowindex);
-	  		
-		});
 		
-		
+		//dragula 설정을 담을 변수
 		var drake;
 
 		//드래그 활성화
@@ -241,6 +233,9 @@
 			
 		};
 				
+
+		//메뉴 순서 DB에 저장
+		
 		
 		
 	</script>

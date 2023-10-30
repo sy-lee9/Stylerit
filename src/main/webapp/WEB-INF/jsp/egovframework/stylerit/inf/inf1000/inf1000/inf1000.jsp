@@ -25,8 +25,8 @@
 			}
 			
 			.order-md-2{				
-			    padding-left: 5% !important;
-			    padding-top: 2%! important;
+			    padding-left: 14% !important;
+			    padding-top: 1%! important;
 			}
 		</style>
 	</head>
@@ -41,16 +41,19 @@
 				<!-- 샵 정보 출력 영역 -->
 				<div class="row featurette lsy-inner-page">
 					<div class="col-md-7 order-md-2">
+					    <p class="lsy-title-font">휴일</p>  
+					    <p>${shopInfo.S_CLS_DAY}</p>
+					    
 					    <p class="lsy-title-font">영업시간</p>  
-					    <p>10:00 ~ 22:00</p>
+					    <p>${shopInfo.S_OP_H}:00 ~ ${shopInfo.S_CLS_H}:00</p>
 					    
 					    <p class="lsy-title-font">대표번호</p>  
-					    <p>  02-123-4567</p>
+					    <p id='tel'>  </p>
 					    
 					    <p class="lsy-title-font">주소</p>  					    
-					    <p>서울 구로구 디지털로 386 2층 Stylerit</p>
-					    
-					    <p class="lsy-content-font">Stylerit은 고객님의 아름다움을 뽐낼 수 있도록 개성과 스타일을 중요하게 생각하며, 트렌디한 헤어 트렌드와 함께 고객님만의 독특한 매력을 더욱 빛나게 해드립니다.</p>
+					    <p>${shopInfo.S_ADR}</p>
+					    <br>
+					    <p class="lsy-content-font">${shopInfo.S_INTR}</p>
 					</div>
 					<div class="col-md-5 order-md-1">
 						<img width="500" height="500" src="/photo/shopLogo.png">
@@ -59,5 +62,28 @@
 				<!-- /샵 정보 출력 영역 -->
     
 	</body>
-	<script></script>
+	<script>
+	
+		var tel = "${shopInfo.S_TEL}";
+		console.log("tel : "+tel);
+		var setTel = '';
+	    
+	    // 전화번호 앞자리
+	    var tel1 = tel.slice(0, -7);
+	    setTel += tel1+'-';
+
+	    // 전화번호 중간자리
+	    var tel2 = tel.substring(2, 5);
+	    setTel += tel2+'-';
+
+	    // 전화번호 뒷자리
+	    var tel3 = tel.substring(5, 9);
+	    setTel += tel3;
+	    
+	    //전화번호 값 넣기
+	    $(document).ready(function() {
+            $('#tel').text(' '+setTel);
+        });
+	    
+	</script>
 </html>

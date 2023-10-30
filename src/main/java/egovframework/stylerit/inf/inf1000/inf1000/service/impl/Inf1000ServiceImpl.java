@@ -1,5 +1,7 @@
 package egovframework.stylerit.inf.inf1000.inf1000.service.impl;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
@@ -32,12 +34,17 @@ public class Inf1000ServiceImpl extends EgovAbstractServiceImpl implements Inf10
 
 	@Resource(name="inf1000DAO")
 	private Inf1000DAO inf1000DAO;
-	
+
 	/**
-	 * 디자이너 정보 조회
+	 * 샵 정보 조회
 	 * @param String - 샵 코드
-	 * @return HashMap<String, Object> - 디자이너 정보 리스트
+	 * @return HashMap<String, Object> - 샵 정보
 	 */
+	@Override
+	public Map<String, Object> selectShopInfo(String S_LOC_CD) {
+		return inf1000DAO.selectShopInfo(S_LOC_CD);
+	}
+	
 	
 
 }

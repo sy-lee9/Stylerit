@@ -3,24 +3,10 @@
 
 <mapper namespace="egovframework.stylerit.adm.adm1000.adm1100.adm1100.service.Adm1100DAO">
 
-	<!-- adm1100DAO.updateMenuOderAjax -->
-	<select id="updateMenuOderAjax" parameterType="map">
-		/* adm1100DAO.updateMenuOderAjax - 전체 회원 수 조회 코드 */
-		<![CDATA[ 
-			UPDATE MENU 
-			SET MN_SQ = MN_SQ+1
-			WHERE 1=1
-		]]>
-		<if test="!S_LOC_CD.equals('')" >
-			<![CDATA[ 
-				AND S_LOC_CD = #{S_LOC_CD}
-			]]>
-		</if>	
-		<if test="!selectMenuCode.equals('')" >
-			<![CDATA[ 
-				AND MN_CD >= #{selectMenuCode}
-			]]>
-		</if>	
-	</select>
-	
+	<!-- adm1100DAO.updateMenuOderAjax 
+	<update id="updateMenuOderAjax" parameterType="map">
+		/* adm1100DAO.updateMenuOderAjax - 메뉴 순서 업데이트 코드 */
+			
+	</update>
+	-->
 </mapper>

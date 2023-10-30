@@ -240,6 +240,7 @@
 		};
 		
 		
+		//인증번호 발송
 		function sendAuthNum(email){
 			
 			$.ajax({

@@ -24,9 +24,20 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 @Mapper("adm1200DAO")
 public interface Adm1200DAO {
 
+	/**
+	 * 전체 회원정보 수 조회
+	 * @param Map<String, Object> - pageNo, memberState, searchValue
+	 * @return int - 전체 회원정보 수
+	 */
 	int selectTotalMemberCnt(Map<String, Object> params);
 
-	List<Map<String, Object>> selectMemberInfo(Map<String, Object> params);
+
+	/**
+	 * 멤버 정보 리스트 조회
+	 * @param Map<String, Object> - pageNo, memberState, searchValue
+	 * @return String - 회원 관리 페이지
+	 */
+	List<Adm1200VO> selectMemberInfo(Map<String, Object> params);
 
 
 	
