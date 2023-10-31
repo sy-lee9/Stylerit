@@ -32,40 +32,41 @@
 	</head>
 	<body>
 		
-				<!-- GNV 영역 -->
-				<div>
-					<jsp:include page="../../../mainGnv.jsp" />
-				</div>
-				<!-- /GNV 영역 -->
-				
-				<!-- 샵 정보 출력 영역 -->
-				<div class="row featurette lsy-inner-page">
-					<div class="col-md-7 order-md-2">
-					    <p class="lsy-title-font">휴일</p>  
-					    <p>${shopInfo.S_CLS_DAY}</p>
-					    
-					    <p class="lsy-title-font">영업시간</p>  
-					    <p>${shopInfo.S_OP_H}:00 ~ ${shopInfo.S_CLS_H}:00</p>
-					    
-					    <p class="lsy-title-font">대표번호</p>  
-					    <p id='tel'>  </p>
-					    
-					    <p class="lsy-title-font">주소</p>  					    
-					    <p>${shopInfo.S_ADR}</p>
-					    <br>
-					    <p class="lsy-content-font">${shopInfo.S_INTR}</p>
-					</div>
-					<div class="col-md-5 order-md-1">
-						<img width="500" height="500" src="/photo/shopLogo.png">
-					</div>
-				</div>
-				<!-- /샵 정보 출력 영역 -->
+		<!-- GNV 영역 -->
+		<div>
+			<jsp:include page="../../../mainGnv.jsp" />
+		</div>
+		<!-- /GNV 영역 -->
+		
+		<!-- 샵 정보 출력 영역 -->
+		<div class="row featurette lsy-inner-page">
+			<div class="col-md-7 order-md-2">
+			    <p class="lsy-title-font">휴일</p>  
+			    <p>${shopInfo.S_CLS_DAY}</p>
+			    
+			    <p class="lsy-title-font">영업시간</p>  
+			    <p>${shopInfo.S_OP_H}:00 ~ ${shopInfo.S_CLS_H}:00</p>
+			    
+			    <p class="lsy-title-font">대표번호</p>  
+			    <p id='tel'>  </p>
+			    
+			    <p class="lsy-title-font">주소</p>  					    
+			    <p>${shopInfo.S_ADR}</p>
+			    <br>
+			    <p class="lsy-content-font">${shopInfo.S_INTR}</p>
+			</div>
+			<div class="col-md-5 order-md-1">
+				<img width="500" height="500" src="/photo/shopLogo.png">
+			</div>
+		</div>
+		<!-- /샵 정보 출력 영역 -->
     
 	</body>
 	<script>
+
 	
+		//샵 전화번호에 '-' 추가하기
 		var tel = "${shopInfo.S_TEL}";
-		console.log("tel : "+tel);
 		var setTel = '';
 	    
 	    // 전화번호 앞자리

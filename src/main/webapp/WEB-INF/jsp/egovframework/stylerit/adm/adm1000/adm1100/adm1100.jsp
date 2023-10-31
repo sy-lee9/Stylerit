@@ -4,8 +4,7 @@
 	<head>	
 		<meta charset="UTF-8">
 		<!-- 반응형 메타 태그 -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1">		
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -16,6 +15,8 @@
 				
 		<!-- Dragula -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="node_modules/dragula/dist/dragula.css">
+		
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
 		<title>Menu Administration</title>
@@ -129,6 +130,7 @@
         
 	</body>
 	<script>
+		
 
 		//페이지 최초 로딩 시 전체 메뉴 리스트 출력
 		listCall('all');
@@ -190,7 +192,7 @@
 		    list.forEach(function(item) {
 		    	
 		    	content += '<tr>'
-               	 		 +  '<td>'+item.mn_NM+'</td>'
+               	 		 +  '<td id="">'+item.mn_NM+'</td>'
 	               	     +  '<td>'+item.mn_PR+'</td>'
 	               	     +  '<td class="move">≡</td>'
 	               	  	 +  '</tr>';			        
@@ -230,12 +232,57 @@
 				//설정 영역 벗어나도 삭제하지 않음
 				removeOnSpill: false
 		  	})
-			
-		};
-				
 
-		//메뉴 순서 DB에 저장
-		
+			//드래그를 종료했을 때 발생하는 이벤트
+			drake.on('drop', function() {
+
+				//메뉴 순서 DB에 저장하기
+				 updateTableSequence();
+				
+			});
+		};
+
+		function updateTableSequence() {
+
+			var menuSequenceList = [];
+				
+			$('tbody tr').each(function(index){
+				
+				//해당 row의 Sequence
+				var menuSequence = index;
+				//해당 row의 메뉴명
+				var menuName = $(this).find('td:first').text();
+
+				//배열에 index와 메뉴명 추가
+				var menuInfo = [menuSequence, menuName];
+				console.log("menuInfo : "+menuInfo);
+
+				//배열을 menuSequenceList에 추가
+				menuSequenceList.push(menuInfo); 
+				console.log("menuSequenceList : "+menuSequenceList);
+			});
+			
+			//메뉴 순서 DB에 저장하기
+			$.ajax({
+				type:'post',
+				url:'/adm/adm1100/adm1100/updateMenuSequenceAjax.do',
+		        data: JSON.stringify(menuSequenceList), // JSON으로 변환
+		        contentType: "application/json",
+		        dataType: 'json',
+				success:function(data){
+					if(data.success == true){
+						console.log("순서 변경 완료");
+					}else {
+						alert('오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+					}
+				},
+				error:function(e){
+					console.log(e);
+					alert('오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+				}
+			});
+
+		};
 		
 		
 	</script>

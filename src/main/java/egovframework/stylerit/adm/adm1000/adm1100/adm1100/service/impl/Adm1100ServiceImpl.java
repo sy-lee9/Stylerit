@@ -37,12 +37,12 @@ public class Adm1100ServiceImpl extends EgovAbstractServiceImpl implements Adm11
 	
 	/**
 	 * 메뉴 순서 업데이트
-	 * @param String - 선택된 메뉴
-	 * @return int - 성공여부
+	 * @param Map - 샵 코드 & 변경된 메뉴 순서
+	 * @return int - 업데이트 된 row 수
 	 */
 	@Override
-	public int updateMenuOderAjax(Map<String, String> paramMap) {
-		return adm1100DAO.updateMenuOderAjax(paramMap);
+	public int updateMenuSequenceAjax(Map<String, Object> paramMap) {
+		return adm1100DAO.updateMenuSequenceAjax(paramMap);
 	}
 
 

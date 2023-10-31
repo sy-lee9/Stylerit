@@ -51,7 +51,7 @@
 	</servlet-mapping>
     
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/jsp/egovframework/stylerit/inf/inf1000/inf1000/inf1000.jsp</welcome-file>
+		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
     
 	<login-config>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -57,7 +58,7 @@
 				<div class="row flex-nowrap justify-content-between align-items-center">
 					<!-- 메인 로고 및 메인페이지 이동 링크 -->
 					<div class="col-4 text-center lsy-text-center">
-						<a class="blog-header-logo text-body-emphasis text-decoration-none" href="/">Stylerit</a>
+						<a class="blog-header-logo text-body-emphasis text-decoration-none" href="<spring:message code='mainPageURL'></spring:message>">Stylerit</a>
 					</div>
 					<!-- /메인 로고 및 메인페이지 이동 링크 -->
 					

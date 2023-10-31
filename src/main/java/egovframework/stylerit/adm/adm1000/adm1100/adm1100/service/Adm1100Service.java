@@ -20,7 +20,7 @@ import java.util.Map;
 public interface Adm1100Service {
 
 	//메뉴 순서 업데이트
-	int updateMenuOderAjax(Map<String, String> paramMap);
+	int updateMenuSequenceAjax(Map<String, Object> paramMap);
 
 	
 	

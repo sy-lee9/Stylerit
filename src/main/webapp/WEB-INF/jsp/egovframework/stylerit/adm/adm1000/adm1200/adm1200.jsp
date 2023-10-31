@@ -130,7 +130,7 @@
 		//선택된 멤버 상태, 회원명으로 회원정보 조회
 		function linkPage(pageNo){
 
-			//서택된 회원상태
+			//선택된 회원상태
 			var memberState = $('#memberState').val();
 			//입력된 검색어
 			var searchValue = $('#searchValue').val();

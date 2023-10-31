@@ -3,10 +3,20 @@
 
 <mapper namespace="egovframework.stylerit.adm.adm1000.adm1100.adm1100.service.Adm1100DAO">
 
-	<!-- adm1100DAO.updateMenuOderAjax 
-	<update id="updateMenuOderAjax" parameterType="map">
-		/* adm1100DAO.updateMenuOderAjax - 메뉴 순서 업데이트 코드 */
-			
+	<!-- adm1100DAO.updateMenuSequenceAjax -->
+	<update id="updateMenuSequenceAjax" parameterType="map">
+		/* adm1100DAO.updateMenuSequenceAjax - 메뉴 순서 업데이트 코드 */
+		<foreach collection="menuSequenceList" item="item" separator=";">
+			UPDATE MENU
+			SET MN_SQ = #{item[0]}
+			WHERE 1=1
+			AND MN_CD = #{item[1]}
+			<if test="S_LOC_CD != null and S_LOC_CD != ''">
+			    <![CDATA[ 
+			      AND S_LOC_CD = #{S_LOC_CD}
+			  	]]>
+			</if>
+		</foreach>	
 	</update>
-	-->
+	
 </mapper>

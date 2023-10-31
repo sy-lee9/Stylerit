@@ -31,8 +31,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             String redirectURL = ms.getMessage("signIn.falseRedirectURL", null, null);
             String script = ms.getMessage("signIn.script", null, null);
             
-            logger.info(alertMessage+" / "+redirectURL+" / "+script);
-            
             String fullScript = String.format(script, alertMessage, redirectURL);
 
             response.setContentType("text/html; charset=UTF-8");

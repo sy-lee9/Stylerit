@@ -1,6 +1,5 @@
 package egovframework.stylerit.inf.inf1000.inf1000.service;
 
-import java.util.List;
 import java.util.Map;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;

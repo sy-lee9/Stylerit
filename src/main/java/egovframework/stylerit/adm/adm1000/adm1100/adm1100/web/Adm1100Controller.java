@@ -2,6 +2,7 @@ package egovframework.stylerit.adm.adm1000.adm1100.adm1100.web;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -70,28 +72,47 @@ public class Adm1100Controller {
 
 	/**
 	 * 메뉴 순서 업데이트
-	 * @param String - 선택된 메뉴
+	 * @param ArrayList - 변경된 메뉴 순서
 	 * @return int - 성공여부
 	 */
-	@RequestMapping(value = "/adm/adm1100/adm1100/updateMenuOderAjax.do")
+	@RequestMapping(value = "/adm/adm1100/adm1100/updateMenuSequenceAjax.do")
 	@ResponseBody
-	public String updateMenuOderAjax(HttpSession session, @RequestParam String selectMenuCode) throws Exception {		
+	public String updateMenuSequenceAjax(HttpSession session, @RequestBody List<String[]> menuSequenceList) throws Exception {		
+		
+		logger.info("param : "+menuSequenceList);
 		
 		//성공 여부
-		String success = "";
+		String success = "false";
+		//paramList 크기
+		int listSize = menuSequenceList.size();
 		
 		//쿼리문 조회를 위한 정보가 담길 map
-		Map<String, String> paramMap = new HashMap<String, String>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
 		//해당 샵 코드 가져오기
 		String S_LOC_CD = (String) session.getAttribute("S_LOC_CD");
 		
-		//선택된 메뉴 & 샵 코드 담기
-		paramMap.put("selectMenuCode", selectMenuCode);
+		//샵 코드 & 변경된 메뉴 순서 담기
 		paramMap.put("S_LOC_CD", S_LOC_CD);
+		paramMap.put("paramList", menuSequenceList);
 		
-		//조회된 메뉴 리스트 
-		int row = adm1100Service.updateMenuOderAjax(paramMap);	
+		if(paramMap != null) {
+			
+			try {
+				//업데이트 된 row 수
+				int row = adm1100Service.updateMenuSequenceAjax(paramMap);	
+				
+				if(listSize == row) {
+					success = "true";
+				}else {
+					success = "false";
+				}
+			}catch (Exception e) {
+		    	e.printStackTrace(); 
+				throw e;
+			}
+			
+		}	
 		
 		return success;
 	}

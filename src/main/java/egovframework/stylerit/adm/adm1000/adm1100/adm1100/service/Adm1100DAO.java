@@ -25,7 +25,7 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 public interface Adm1100DAO {
 
 	//메뉴 순서 업데이트
-	int updateMenuOderAjax(Map<String, String> paramMap);
+	int updateMenuSequenceAjax(Map<String, Object> paramMap);
 
 
 

@@ -111,7 +111,8 @@ public class Aut1100ServiceImpl extends EgovAbstractServiceImpl implements Aut11
 				}
 				
 			} catch (Exception e) {
-				System.out.println(e);
+		    	e.printStackTrace(); 
+				throw e;
 			}
 		
 		}
