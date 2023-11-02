@@ -270,9 +270,7 @@
 		        contentType: "application/json",
 		        dataType: 'json',
 				success:function(data){
-					if(data.success == true){
-						console.log("순서 변경 완료");
-					}else {
+					if(data == false){
 						alert('오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
 					}
 				},

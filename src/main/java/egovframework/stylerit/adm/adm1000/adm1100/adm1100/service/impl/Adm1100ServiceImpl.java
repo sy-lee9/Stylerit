@@ -1,10 +1,13 @@
 package egovframework.stylerit.adm.adm1000.adm1100.adm1100.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -42,7 +45,30 @@ public class Adm1100ServiceImpl extends EgovAbstractServiceImpl implements Adm11
 	 */
 	@Override
 	public int updateMenuSequenceAjax(Map<String, Object> paramMap) {
-		return adm1100DAO.updateMenuSequenceAjax(paramMap);
+		
+		//update row 개수
+		int updateRow = 0;	
+		//menuSequenceList
+		ArrayList<List<String>> list = (ArrayList<List<String>>) paramMap.get("menuSequenceList");
+		
+		//메뉴 순서 업데이트
+		for(int i=0; i<list.size(); i++) {
+			//menuSequenceList의 list를 순서대로 가져와서 
+			List<String> data = list.get(i);
+			//변경할 메뉴 순서
+			String menuSequence = String.valueOf(data.get(0));
+			//변경할 메뉴 이름
+			String menuName = String.valueOf(data.get(1));
+			//파라메터에 담기
+			paramMap.put("menuSequence", menuSequence);
+			paramMap.put("menuName", menuName);
+			//하나씩 업데이트
+			adm1100DAO.updateMenuSequenceAjax(paramMap);
+			//업데이트된 row 수 저장
+			updateRow++;
+		}
+		
+		return updateRow;
 	}
 
 

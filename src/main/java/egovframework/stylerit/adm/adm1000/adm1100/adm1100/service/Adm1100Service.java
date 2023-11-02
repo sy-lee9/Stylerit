@@ -2,6 +2,8 @@ package egovframework.stylerit.adm.adm1000.adm1100.adm1100.service;
 
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+
 /**
  * @Class Name : Adm1100Service.java
  * @Description : 메뉴 관리 관련 Service Class
